@@ -6,8 +6,9 @@ import org.junit.Test;
 
 public class InvoiceServiceTest {
     InvoiceService invoiceService = null;
+
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         invoiceService = new InvoiceService();
     }
 
@@ -30,13 +31,20 @@ public class InvoiceServiceTest {
     }
 
     @Test
-    public void givenMultipleRides_ShouldReturnInvoiceSummary(){
+    public void givenMultipleRides_ShouldReturnInvoiceSummary() {
         InvoiceService invoiceService = new InvoiceService();
         Ride[] rides = {new Ride(2.0, 5),
                 new Ride(0.1, 1)
         };
-        InvoiceSummary summary=  invoiceService.calculateFare(rides);
-        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.0);
+        InvoiceSummary summary = invoiceService.calculateFare(rides);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
         Assert.assertEquals(expectedInvoiceSummary, summary);
+    }
+
+    @Test
+    public void givenUserId_ShouldReturnInvoiceSummary() {
+        InvoiceSummary invoiceSummary = invoiceService.getInvoice(1);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
+        Assert.assertEquals(expectedInvoiceSummary.getInvoiceSummary(), invoiceSummary.getInvoiceSummary());
     }
 }
