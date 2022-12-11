@@ -1,13 +1,27 @@
 package org.example;
 
 public class InvoiceSummary {
-    private final int numOfRides;
-    private final double totalFare;
-    private double averageFare;
+    int numberOfRides;
+    double totalFare;
+    double avgFare;
 
-    public InvoiceSummary(int numOfRides, double totalFare) {
-        this.numOfRides = numOfRides;
+    public InvoiceSummary() {
+
+    }
+
+    public InvoiceSummary(int numberOfRides, double totalFare) {
+        this.numberOfRides = numberOfRides;
         this.totalFare = totalFare;
+    }
+
+    public InvoiceSummary(int numberOfRides, double totalFare, String type) {
+        this.numberOfRides = numberOfRides;
+        this.totalFare = totalFare;
+    }
+
+    public InvoiceSummary getInvoiceSummary() {
+        this.avgFare = this.totalFare / this.numberOfRides;
+        return this;
     }
 
     @Override
@@ -15,11 +29,6 @@ public class InvoiceSummary {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceSummary that = (InvoiceSummary) o;
-        return numOfRides == that.numOfRides && Double.compare(that.totalFare, totalFare) == 0 && Double.compare(that.averageFare, averageFare) == 0;
-    }
-
-    public InvoiceSummary getInvoiceSummary() {
-        this.averageFare = this.totalFare / this.numOfRides;
-        return this;
+        return numberOfRides == that.numberOfRides && Double.compare(that.totalFare, totalFare) == 0 && Double.compare(that.avgFare, avgFare) == 0;
     }
 }
